@@ -31,7 +31,7 @@ public class LandingSteps {
         Assert.assertTrue(landingPage.verifyHeadingAboutSectionIsDisplayed());
     }
 
-    @Then("Verify scroll until my project section heding is visible")
+    @Then("Verify scroll until my project section heading is visible")
     public void verifyScrollUntilMyProjectSectionHedingIsVisible() throws InterruptedException {
         Assert.assertTrue(landingPage.verifyHeadingMyProjectSectionIsDisplayed());
     }
