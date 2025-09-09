@@ -1,0 +1,53 @@
+name: CI - Selenium Cucumber Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      # Install Chrome untuk Selenium (ringkas & stabil)
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      # (Opsional) echo versi Chrome (debug)
+      - run: google-chrome --version || chrome --version
+
+      - name: Run tests (Maven)
+        env:
+          CI: true            # dipakai Hooks untuk headless
+        run: mvn -B clean test
+
+      # Upload report Cucumber bawaan (html & json)
+      - name: Upload Cucumber HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-html
+          path: target/cucumber/cucumber.html
+          if-no-files-found: warn
+
+      - name: Upload Cucumber JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-json
+          path: target/cucumber/cucumber.json
+          if-no-files-found: warn
