@@ -13,7 +13,7 @@ import java.util.List;
 
 public class BasePage {
     // NOTE: originally WAIT=1000; used in Duration.ofSeconds(WAIT) would be ~16 minutes. Set sensible default.
-    public static final int WAIT = 1000;
+    public static final int WAIT = 2000;
     public static WebDriver driver;
 
     public BasePage(WebDriver driver) {
