@@ -1,4 +1,5 @@
 step_definitions/LandingSteps.class
+step_definitions/HeroSectionSteps.class
 run/RunCukesTest.class
 org/example/BasePage.class
 org/example/pageobject/LandingPage.class

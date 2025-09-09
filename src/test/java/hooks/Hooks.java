@@ -41,7 +41,7 @@ public class Hooks {
         // Use options
         driver = new ChromeDriver(options);
 
-        String appUrl = "https://www.rafiimalfa.com";
+        String appUrl = "https://rafiimalfa.com";
         driver.get(appUrl);
         driver.manage().window().maximize();
     }
